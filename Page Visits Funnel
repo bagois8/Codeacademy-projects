@@ -45,7 +45,7 @@ how='left')
 
 print(all_data.head(10))
 
-purchase_checkout = all_data.merge(checkout_time,purchase_time,how='left')
+purchase_checkout = pd.merge(checkout,purchase,how='left')
 #print(len(purchase_checkout))
 
 purchase_null = purchase_checkout[purchase_checkout.purchase_time.isnull()]
@@ -54,10 +54,7 @@ percentage_checkout = float(len(purchase_null))/(len(purchase_checkout))
 print(percentage_checkout)
 
 
-
-
 all_data['time_to_purchase'] = all_data.purchase_time - all_data.visit_time
 
 print(all_data.time_to_purchase)
 print(all_data.time_to_purchase.mean())
-
