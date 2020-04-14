@@ -1,0 +1,8 @@
+It’s time to combine everything that you learned about data visualization into a capstone project. We have two projects for you to consider. Option 1 will require you to write a blogpost and Option 2 will require you to make a slide presentation.
+
+OPTION 1: LIFE EXPECTANCY AND GDP IN FIVE NATIONS
+Explore data from the World Health Organization and the World Bank to visualize the relationship between Gross Domestic Product (GDP) and Life Expectancy. This project will combine material from Matplotlib, Pandas, and Seaborn. You will need to install Python 3 and complete this project offline.
+
+OPTION 2: VISUALIZING THE NETFLIX STOCK PROFILE
+Explore data from the publicly traded company, Netflix, to visualize the performance of the stock during the year of 2017. This project will combine material from Matplotlib, Pandas, and Seaborn. You will need to install Python 3 and complete this project offline.
+
