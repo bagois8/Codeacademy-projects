@@ -1,0 +1,58 @@
+For this project, you will act as a data researcher for the World Health Organization. You will be helping them analyze data on GDP and life expectancy from the World Health Organization and the World Bank to try and identify the relationship between the GDP and life expectancy of six countries.
+
+During this project, you will analyze, prepare, and plot data, and seek to answer questions in a meaningful way.
+
+After you perform analysis, you’ll be creating a blog post to share your findings on their website.
+
+WORKING ON YOUR COMPUTER
+If you haven’t installed Python 3 on your computer yet, follow these instructions:
+
+If you’ve never used the command line, we recommend taking the Learn the Command Line course.
+Install Python by following the directions in this article on Installing Python 3 for Data Analysis.
+Learn about Jupyter Notebooks, a cool way of combining Python code with explanations or instruction in a web terminal.
+TASK 1: ANALYZING DATA
+You will be completing this project on your own computer, similar to the other off-platform projects that we’ve done throughout the intensive.
+
+Download the Life Expectancy and GDP project
+Double-click on it to “unzip” the folder. It should contain several items:
+all_data.csv
+life_expectancy_gdp.ipynb
+In the command line, navigate into the unzipped file directory
+Type the following into the command line:
+      jupyter notebook
+This should open a browser tab.
+
+Click on life_expectancy_gdp.ipynb in the browser tab. This will open up your Jupyter Notebook.
+Follow the steps in the Jupyter Notebook. It will help you do your analysis.
+TASK 2: EXPORT DATA VISUALIZATIONS
+In the file life_expectancy_gdp.ipynb, there are instructions for the different visualizations needed in the stock profile. Read and complete each instruction so that you can export your files as a visualization.
+
+TASK 3: CREATE A BLOG POST
+Once you’ve performed your analysis on your computer, you’re ready to create your blog post.
+
+The Guardian’s Datablog is a good resource for example blog posts about data visualizations.
+
+Create a blog post using Google Drive, Medium, or some other blogging platform. Your blog post should include the following:
+
+A compelling title about your findings
+
+An introduction to the data research
+
+A section sharing the background info (definition of GDP for example) and sources for your data as well as any further research you conducted
+
+An accompanying paragraph describing the following visualizations:
+
+The violin plot of the life expectancy distribution by country
+The facet grid of scatter graphs mapping GDP as a function of Life Expectancy by country
+The facet grid of line graphs mapping GDP by country
+The facet grid of line graphs mapping Life Expectancy by country
+Any other graphs that you created in the Jupyter notebook
+
+A conclusion touching on the limitations of the data and further research
+
+TASK 4: SUBMIT YOUR PROJECT
+Review the project rubric to see what makes a good project.
+Save your blog as a PDF using save as.
+Save your Jupyter notebook as a “.py” file using File > Download as > Python (.py)
+Optional: if your blog is hosted somewhere, such as Medium, you can include that link in a text file named link.txt.
+Upload your materials to the Codecademy forums. More details on how to do this can be found at the end of the path.
