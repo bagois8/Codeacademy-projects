@@ -1,0 +1,43 @@
+You’ve been hired as a data visualization developer at Yahoo Finance! Your job is to help financial analysts by creating some of the visualizations for a stock profile of Netflix.
+
+In finance, a stock profile is a series of studies, visualizations, and analyses that dive into different aspects a publicly traded company’s data.
+
+During this project, you will analyze, prepare, and plot data. Your visualizations will help the financial analysts asses the risk of the Netflix stock.
+
+After you complete your visualizations, you’ll be creating a presentation to share the images with the rest of the Netflix Stock Profile team.
+
+WORKING ON YOUR COMPUTER
+If you’ve never used the command line, we recommend taking the Learn the Command Line course.
+Install Python by following the directions in this article on Installing Python 3 for Data Analysis.
+Learn about Jupyter Notebooks, a cool way of combining Python code with explanations or instruction in a web terminal.
+TASK 1: PULLING AND ANALYZING DATA
+Download Netflix Stocks Capstone.zip
+Double-click on it to “unzip” the folder. It should contain three items:
+NFLX.csv, DJI.csv, netflix-visualizations.ipynb
+In the command line, navigate into the Netflix Stocks Capstone directory
+Type the following into the command line:
+    jupyter notebook
+This should open a browser tab.
+
+Click on netflix-visualizations.ipynb in the browser tab. This will open up your Jupyter Notebook.
+Follow the steps in the Jupyter Notebook. It will help you do your analysis.
+TASK 2: EXPORT DATA VISUALIZATIONS
+In the file netflix-visualizations.ipynb, there are instructions for the different visualizations needed in the stock profile. Read and complete each instruction so that you can export your files as a visualization.
+
+TASK 3: CREATE A SLIDE DECK
+Create a slide deck using Google Drive , Microsoft Powerpoint, or some other presentation software. Your presentation should include the following:
+
+A title slide
+A list of your visualizations and your role in their creation for the “Stock Profile” team
+A visualization of the distribution of the stock prices for Netflix in 2017
+A visualization and a summary of Netflix stock and revenue for the past four quarters and a summary
+A visualization and a brief summary of their earned versus actual earnings per share
+A visualization of Netflix stock against the Dow Jones stock (to get a sense of the market) in 2017
+If you like, you can also record a video of yourself giving the presentation and upload it to YouTube.
+
+TASK 4: SUBMIT YOUR PROJECT
+Review the project rubric to see what makes a good project.
+Save your presentation as a PDF using save as.
+Save your Jupyter notebook as a “.py” file using File > Download as > Python (.py)
+If you created a video, create a file called video.txt with a link to the video
+Upload your materials to the Codecademy forums. More details on how to do this can be found at the end of the path.
