@@ -1,0 +1,52 @@
+def ground_ship(weight):
+  cost = 0
+  if weight <= 2:
+    cost += 20 + 1.50*weight
+  elif weight > 2 and weight <= 6:
+    cost += 20 + 3.00*weight
+  elif weight > 6 and weight <= 10:
+    cost += 20 + 4.00*weight
+  elif weight > 10:
+    cost += 20 + 4.75*weight
+  return cost
+
+print(ground_ship(8.4))
+
+premium_ship_cost = 125.00
+
+def drone_ship(weight):
+  cost = 0
+  if weight <= 2:
+    cost += 4.50*weight
+  elif weight > 2 and weight <= 6:
+    cost += 9.00*weight
+  elif weight > 6 and weight <= 10:
+    cost += 12.00*weight
+  elif weight > 10:
+    cost += 14.25*weight
+  return cost
+
+print(drone_ship(1.5))
+
+
+def statement(weight):
+  
+  ground = ground_ship(weight)
+  premium = premium_ship_cost
+  drone = drone_ship(weight)
+  
+  if ground < premium and ground < drone:
+    price = ground
+    method = 'ground'
+  elif premium < ground and premium < drone:
+    price = premium
+    method = 'premium'
+  elif drone < premium and drone < ground:
+    method = 'drone'
+    price = drone
+  print("The package of said '+str(weight)+' pounds cost $%.2f to ship with cheapest shipping which is %s shipping " % (price,method))
+  
+
+print(statement(4.8))
+
+print(statement(41.5))
