@@ -1,0 +1,68 @@
+ select *
+ from subscriptions
+ limit 100;
+ 
+ select max(subscription_start)
+ from subscriptions;
+ 
+ WITH as months (
+ select '2017-01-01' as first_day
+        '2017-01-31' as last_day
+   union
+        '2017-02-01' as first_day
+        '2017-02-28' as last_day
+   union
+        '2017-03-01' as first_day
+        '2017-03-31' as last_day
+ );
+ 
+ WITH as cross_join(
+ select subscriptions.*,months.*
+   from subscriptions
+   cross join months
+ );
+ 
+ WITH as status(
+ select id, first_day,
+   CASE when (subscription_start < first_day) 
+    AND (
+      subscription_end > first_day
+      OR subscription_end IS NULL
+    ) THEN 1
+  ELSE 0
+END as is_active_30,
+   CASE when (subscription_start < first_day) 
+    AND (
+      subscription_end > first_day
+      OR subscription_end IS NULL
+    ) THEN 1
+  ELSE 0
+END as is_active_87,
+   CASE when (subscription_start < first_day) 
+    AND (
+      subscription_end between first_day and last_day
+    ) THEN 1
+  ELSE 0
+END as is_canceled_30,
+   CASE when (subscription_start < first_day) 
+    AND (
+      subscription_end between first_day and last_day
+    ) THEN 1
+  ELSE 0
+END as is_canceled_87
+ );
+ 
+ WITH status_aggregate as (
+ select SUM(is_active_87 ) as sum_active_87,
+   SUM(is_active_30) as sum_active_30,
+   SUM(is_canceled_87) as sum_canceled_87,
+   SUM(is_canceled_30) as sum_canceled_30
+   from status
+   group by month
+ );
+ 
+ select month,
+ 1.0* (sum_canceled_87./sum_active_87) as churn_rate_87,
+ 1.0*(sum_canceled_30./sum_active_30) as churn_rate_30
+ from status_aggregate;
+ '''
