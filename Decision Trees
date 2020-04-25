@@ -1,0 +1,53 @@
+import codecademylib3_seaborn
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+import matplotlib.pyplot as plt
+
+#row 0 to be used as the header
+flags = pd.read_csv('flags.csv',header=0)
+
+print(flags.head())
+print(flags.columns)
+
+#labels1 = flags[['Landmass']]
+labels = flags[['Language']]
+
+#data = flags[['Red','Green','Blue','Gold','White','Black','Orange']]
+#we need to add more features to the flags so we can see if the accuracy of depth of the three is more significant
+data = flags[["Red", "Green", "Blue", "Gold",
+ "White", "Black", "Orange",
+ "Circles",
+"Crosses","Saltires","Quarters","Sunstars",
+"Crescent","Triangle"]]
+
+train_data, test_data, train_labels, test_labels = train_test_split(data,labels,random_state=1)
+
+#Create a Tree Classifier
+tree = DecisionTreeClassifier(random_state=1)
+
+tree.fit(train_data,train_labels)
+
+print(tree.score(test_data,test_labels))
+'''
+for i in range(1,21):
+  
+    tree = DecisionTreeClassifier(random_state=1, max_depth=i)
+
+    tree.fit(train_data,train_labels)
+
+    print(tree.score(test_data,test_labels))
+'''   
+#Graphing it with max_depth and max_leaf_nodes
+scores=[]
+for i in range(1,21):
+  
+    tree = DecisionTreeClassifier(random_state=1, max_depth=i,max_leaf_nodes=15)
+
+    tree.fit(train_data,train_labels)
+    scores.append(tree.score(test_data,test_labels))
+    
+plt.plot(range(1,21),scores)
+plt.ylabel('Score tree')
+plt.xlabel('Depth of three')
+plt.show()
