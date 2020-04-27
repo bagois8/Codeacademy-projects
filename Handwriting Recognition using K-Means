@@ -1,0 +1,84 @@
+import codecademylib3_seaborn
+import numpy as np
+from matplotlib import pyplot as plt
+from sklearn import datasets
+from sklearn.cluster import KMeans
+
+digits = datasets.load_digits()
+
+print(digits.DESCR)
+
+#the digit images are 8 x 8
+
+#what the data looks like:
+print(digits.data)
+
+#print the target values 
+print(digits.target)
+
+#to visualize the data images:
+plt.gray()
+
+plt.matshow(digits.images[100])
+
+plt.show()
+
+print(digits.target[100])
+
+#lets cluster 1797 different digit images into groups:
+
+#the number of clusters is 10 because there are 10 digits (0 to 9) in digits.target
+model = KMeans(n_clusters=10, random_state=42)
+
+model.fit(digits.data)
+
+#lets visualize all the centroids:
+fig = plt.figure(figsize=(8,3))
+
+fig.suptitle('Cluster Center Images', fontsize=14, fontweight='bold')
+
+for i in range(10):
+  
+  #initialize subplots in a grid of 2x5, at i+1th position
+  ax = fig.add_subplot(2,5,1+i)
+  
+  #display images
+  ax.imshow(model.cluster_centers_[i].reshape((8,8)),cmap=plt.cm.binary)
+
+plt.show()
+
+new_samples = np.array(
+[
+[0.00,3.64,7.62,7.61,7.61,7.16,0.23,0.00,0.00,4.55,7.00,0.76,3.11,7.62,0.76,0.00,0.00,4.55,6.85,0.00,4.33,7.31,0.23,0.00,0.00,3.19,5.56,0.30,7.09,5.48,0.00,0.00,0.00,0.00,0.00,3.27,7.62,1.90,0.00,0.00,0.00,0.00,1.37,7.16,5.93,0.08,0.00,0.00,0.23,5.32,7.46,7.62,4.10,3.04,2.89,0.15,1.12,7.61,7.61,7.62,7.61,7.61,7.47,1.07],
+[0.00,1.06,7.39,7.62,7.54,1.44,0.00,0.00,0.00,3.87,7.62,2.12,7.30,5.08,0.00,0.00,0.00,4.56,6.93,0.00,5.09,6.84,0.00,0.00,0.00,4.56,6.86,0.00,4.55,6.85,0.00,0.00,0.00,4.56,6.85,0.00,4.55,6.85,0.00,0.00,0.00,4.56,6.86,0.00,4.94,6.85,0.00,0.00,0.00,4.03,7.54,0.15,6.77,5.25,0.00,0.00,0.00,3.34,7.62,6.39,7.62,3.04,0.00,0.00],
+[0.00,3.56,7.62,6.01,7.31,7.62,0.46,0.00,0.00,3.80,7.62,0.07,0.45,1.22,0.00,0.00,0.00,2.80,7.61,3.88,3.04,0.60,0.00,0.00,0.00,1.66,7.61,7.61,7.62,4.03,0.00,0.00,0.00,0.00,0.68,0.38,6.76,4.94,0.00,0.00,0.00,0.00,0.00,0.08,6.54,5.32,0.00,0.00,0.00,1.14,5.40,7.00,7.62,3.18,0.00,0.00,0.00,3.50,7.01,4.71,2.58,0.00,0.00,0.00],
+[0.00,0.00,5.02,7.61,7.62,3.27,0.00,0.00,0.00,0.08,7.53,4.79,6.55,6.99,0.45,0.00,0.00,1.35,7.62,3.03,1.90,7.54,4.33,0.00,0.00,1.51,7.62,2.28,0.00,6.23,5.33,0.00,0.00,1.51,7.62,2.28,0.00,6.24,5.25,0.00,0.00,1.51,7.62,2.28,0.53,7.38,4.26,0.00,0.00,1.51,7.62,3.87,4.25,7.62,1.36,0.00,0.00,0.98,7.54,7.61,7.61,6.46,0.00,0.00]
+]
+)
+
+new_labels = model.predict(new_samples)
+
+for i in range(len(new_labels)):
+  if new_labels[i] == 0:
+    print(0, end='')
+  elif new_labels[i] == 1:
+    print(9, end='')
+  elif new_labels[i] == 2:
+    print(2, end='')
+  elif new_labels[i] == 3:
+    print(1, end='')
+  elif new_labels[i] == 4:
+    print(6, end='')
+  elif new_labels[i] == 5:
+    print(8, end='')
+  elif new_labels[i] == 6:
+    print(4, end='')
+  elif new_labels[i] == 7:
+    print(5, end='')
+  elif new_labels[i] == 8:
+    print(7, end='')
+  elif new_labels[i] == 9:
+    print(3, end='')
+
+print(new_labels,end='')
+#printed out 2950[2 1 7 0] - I wrote 2050 on http_//localhost/test.html, the year is pretty close but they recognize my written digit '0' as '9'
