@@ -1,1 +1,27 @@
-jgj
+import numpy as np
+
+#P(A|B) = P(student knows the material | answers correctly)
+#P(NOT_A|B) = 0.2
+#P(A| NOT_B) = 0.15
+#prob that the student knows the material:
+p_a = 0.6
+
+#given that the student knows the correct answer, chance that the student picked the wrong answer:
+p_not_b_a = 0.15
+
+#given that the student does not knows the answer, chance that the student picked the correct answer:
+p_b_not_a = 0.2
+
+#given that the student knows the material, what is the prob that she answers correctly:
+p_b_a = 1 - p_not_b_a
+print p_b_a
+
+p_not_a = 1 - p_a
+#prob of any student answering correctly:
+p_b = (p_b_a*p_a) + (p_b_not_a * p_not_a) 
+print p_b
+
+#given that students answers correctly, what is the prob of she knowing the material:
+p_a_b = (p_b_a * p_a)/p_b
+print p_a_b
+
