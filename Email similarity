@@ -1,0 +1,40 @@
+from sklearn.datasets import fetch_20newsgroups
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.feature_extraction.text import CountVectorizer
+
+#emails = fetch_20newsgroups()
+
+emails = fetch_20newsgroups(categories=['rec.sport.baseball','rec.sport.hockey'])
+print(emails.target_names)
+
+print(emails.data[5])
+print(emails.target[5])
+
+#the label of email 5 is 1, which corresponds to rec.sport.hockey 
+
+#we want to split our data into training and test sets:
+train_emails = fetch_20newsgroups(categories=['comp.sys.ibm.pc.hardware','comp.sys.mac.hardware'], subset='train',shuffle=True,random_state=108)
+
+test_emails = fetch_20newsgroups(categories=['comp.sys.ibm.pc.hardware','comp.sys.mac.hardware'], subset='test',shuffle=True,random_state=108)
+
+#we want to transform these emails into lists of word counts:
+counter = CountVectorizer()
+
+#we need to tell counter what possible words can exist in emails:
+counter.fit(test_emails.data+train_emails.data)
+
+#list of counts of words in training and test set
+train_counts = counter.transform(train_emails.data)
+test_counts = counter.transform(test_emails.data)
+
+#make a Naive Bayes classifier that we can train and test on
+classifier = MultinomialNB()
+
+classifier.fit(train_counts,train_emails.target)
+
+#accuracy of the classifier on the test data; measures the percentage of classifications a classifier correctly made:
+print(classifier.score(test_counts,test_emails.target))
+
+#the classifier is good to distinguish soccer emails and hockey emails
+#the classifier is better at distinguish hardware emails and hockey emails
+#the classifier is worse to distinguish ibm pc hardware from mac hardware
