@@ -1,0 +1,61 @@
+import codecademylib3_seaborn
+from bs4 import BeautifulSoup
+import requests
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+webpage = requests.get('https://s3.amazonaws.com/codecademy-content/courses/beautifulsoup/cacao/index.html')
+
+soup = BeautifulSoup(webpage.content,'html.parser')
+
+print(soup)
+
+#put all of the ratings into a list
+#use a command on the soup object to get all of the tags that contain the ratings
+lista = soup.find_all(attrs={'class':'Rating'})
+
+#loop through the rating tags and get the test contained in each one
+ratings = []
+for tag in lista[1:]:
+  ratings.append(float(tag.get_text()))
+  
+
+#the plot show up at localhost in the web browser
+plt.hist(ratings)
+plt.show()
+
+plt.clf()
+
+#find the 10 most highly rated chocolatiers
+
+company_tags = soup.select('.Company')
+companies = []
+
+for tag in company_tags[1:]: 
+  companies.append(tag.get_text())
+  
+#create a list that contains all of the cocoa percentages; store each percent as an integer after stripping off the % char
+cocoa_tags = soup.select('.CocoaPercent')
+
+cocoa_percs = []
+for tag in cocoa_tags[1:]:
+  percent = float(tag.get_text().strip('%'))
+  cocoa_percs.append(percent)  
+  
+df = {'Company': companies, 'Rating': ratings, 'CocoaPercentage': cocoa_percs}
+dataframe = pd.DataFrame.from_dict(df)  
+
+mean_vals = dataframe.groupby('Company').Rating.mean()
+ten_best = mean_vals.nlargest(10)
+print(ten_best)
+
+#scatterplot of ratings vs percentage of cocoa
+plt.scatter(dataframe.CocoaPercentage,dataframe.Rating)
+
+z = np.polyfit(dataframe.CocoaPercentage, dataframe.Rating, 1)
+line_function = np.poly1d(z)
+plt.plot(dataframe.CocoaPercentage, line_function(dataframe.CocoaPercentage), "r--")
+
+plt.show()
+
